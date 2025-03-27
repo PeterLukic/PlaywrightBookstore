@@ -1,0 +1,22 @@
+{
+  "url": "https://practice.expandtesting.com/bookstore",
+  "bookName": "Agile Testing",
+  "bookPrice": "56€",
+  "bookDescription": "A Practical Guide for Testers and Agile Teams",
+  "email": "petertest1@gmail.com",
+  "username": "petertest1",
+  "password": "12345",
+  "_email": "test1@gmail.com",
+  "_password": "12345",
+  "registerUserName": "Mona.Rowe63",
+  "registerEmail": "Nathen_Hagenes@hotmail.com",
+  "registerPassword": "sw6hgt4tbqS1hXd",
+  "name": "Peter",
+  "address": "1234 Main Street",
+  "cardHolderName": "Peter Test",
+  "creditCardNumber": "4242424242424242",
+  "expirationMonth": "2",
+  "expirationYear": "2029",
+  "cvcNumber": "456",
+  "orderId": "67e5bf9938f0070286de2f49"
+}
