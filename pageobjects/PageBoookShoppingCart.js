@@ -14,6 +14,7 @@ class PageBoookShoppingCart {
 
     // Navigate to the shopping cart page
     async goToPageBoookShoppingCart(url) {
+        await this.page.waitForLoadState('networkidle');
         await this.page.goto(url + "/cart");
         await this.page.waitForLoadState('networkidle');
     }
