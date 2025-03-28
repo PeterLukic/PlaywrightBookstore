@@ -13,8 +13,7 @@ class PageBooksSignIn {
 
     // Method to navigate to the sign In booking page
     async goToBookingSignInPage(url) {
-        await this.page.waitForLoadState('networkidle');
-        await this.page.goto(url + "/user/signin");
+        await this.page.goto(`${url}//user/signin`);
         await this.page.waitForLoadState('networkidle');
     }
 

@@ -15,8 +15,7 @@ class PageBooksSignUp {
 
     // Method to navigate to the sign Up booking page
     async goToBookingSignUpPage(url) {
-        await this.page.waitForLoadState('networkidle');
-        await this.page.goto(url + "/user/signup");
+        await this.page.goto(`${url}/user/signup`);
         await this.page.waitForLoadState('networkidle');
     }
 

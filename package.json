@@ -1,10 +1,15 @@
 {
   "name": "playwrightframework",
   "version": "1.0.0",
-  "description": "",
+  "description": "Playwright testing framework for the Bookstore application",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:report": "npx playwright show-report",
+    "install:browsers": "npx playwright install"
+  },
+  "keywords": ["playwright", "testing", "automation"],
   "author": "",
   "license": "ISC",
   "devDependencies": {

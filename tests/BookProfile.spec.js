@@ -24,8 +24,10 @@ test('Users can log out', { tag: '@LogOut' }, async ({ page }) => {
     await pageBooksSignIn.goToBookingSignInPage(dataBookStore.url);
     await pageBooksSignIn.signInWithEmailAndPassword(dataBookStore.email, dataBookStore.password);
     const pageBooksProfile = pageManager.getPageBooksProfile();  
-    await pageBooksProfile.logOut();
+    await pageBooksProfile.dropdownButtonClick();
+    await pageBooksProfile.logOutClick();
     const pageBooksList = pageManager.getPageBooksList();
     await pageBooksList.verifyBookStoreSignPage();
+ 
 
 });

@@ -20,7 +20,6 @@ class PageBooksList {
 
     // Method to navigate to the booking list page
     async goToBookingListPage(url) {
-        await this.page.waitForLoadState('networkidle');
         await this.page.goto(url);
         await this.page.waitForLoadState('networkidle');
     }

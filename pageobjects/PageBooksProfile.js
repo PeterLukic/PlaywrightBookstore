@@ -13,9 +13,15 @@ class PageBooksProfile {
         this.flashMessage = page.locator("#flash-message"); // Locator for flash message
     }
 
-    // Method to log out
-    async logOut() {
+    // Method click on the dropdown button
+    async dropdownButtonClick() {
+        await this.dropdownButton.waitFor({ state: 'visible' });
         await this.dropdownButton.click();
+    }
+
+
+    // Method to log out
+    async logOutClick() {
         await this.logoutLink.waitFor({ state: 'visible' });
         await this.logoutLink.click();
     }
@@ -70,6 +76,7 @@ class PageBooksProfile {
     }
 
     async verifyOrderDetails(orderId, bookTitle, price) {
+        await this.page.waitForLoadState('networkidle');
         let orderFound = false;
         for (const order of this.orders) {
             if (order.orderId === orderId && order.bookTitle === bookTitle && order.price === price) {
@@ -87,6 +94,7 @@ class PageBooksProfile {
 
     // Method to extract the order ID from the flash message after purchase
     async extractOrderIdFromFlashMessage() {
+        await this.page.waitForLoadState('networkidle');
         await this.flashMessage.waitFor({ state: 'visible' });
         const flashMessageText = await this.flashMessage.textContent();
         const orderIdMatch = flashMessageText.match(/Reference ID: (\w+)/);
