@@ -3,12 +3,14 @@ const { PageManager } = require('../pageobjects/PageManager');
 const dataBookStore = JSON.parse(JSON.stringify(require('../utils/dataBookStore.json')));
 const PopupHelper = require('../utils/PopupHelper'); 
 
-
-test('Adding books to the shopping cart', { tag: '@AddBook' }, async ({ page }) => {
+test.beforeEach(async ({ page }) => {
     const popupHelper = new PopupHelper(page);
     await popupHelper.blockAds(page);
-    
-    const pageManager = new PageManager(page);
+    test.info().pageManager = new PageManager(page); // Store it in test context
+});
+
+test('Adding books to the shopping cart', { tag: '@AddBook' }, async ({ page }) => {
+    const pageManager = test.info().pageManager;
     const pageBooksSignIn = pageManager.getPageBooksSignIn();
     await pageBooksSignIn.goToBookingSignInPage(dataBookStore.url);
     await pageBooksSignIn.signInWithEmailAndPassword(dataBookStore.email, dataBookStore.password);
@@ -23,10 +25,7 @@ test('Adding books to the shopping cart', { tag: '@AddBook' }, async ({ page }) 
 });
 
 test('Viewing the shopping cart', { tag: '@ShopCard' }, async ({ page }) => {
-    const popupHelper = new PopupHelper(page);
-    await popupHelper.blockAds(page);
-    
-    const pageManager = new PageManager(page);
+    const pageManager = test.info().pageManager;
     const pageBooksSignIn = pageManager.getPageBooksSignIn();
     await pageBooksSignIn.goToBookingSignInPage(dataBookStore.url);
     await pageBooksSignIn.signInWithEmailAndPassword(dataBookStore.email, dataBookStore.password);
@@ -43,9 +42,7 @@ test('Viewing the shopping cart', { tag: '@ShopCard' }, async ({ page }) => {
 });
 
 test('Checkout process', { tag: '@Checkout' }, async ({ page }) => {
-    const popupHelper = new PopupHelper(page);
-    await popupHelper.blockAds(page);  
-    const pageManager = new PageManager(page);
+    const pageManager = test.info().pageManager;
     const pageBooksSignIn = pageManager.getPageBooksSignIn();
     await pageBooksSignIn.goToBookingSignInPage(dataBookStore.url);
     await pageBooksSignIn.signInWithEmailAndPassword(dataBookStore.email, dataBookStore.password);
@@ -63,9 +60,7 @@ test('Checkout process', { tag: '@Checkout' }, async ({ page }) => {
 });
 
 test('Users can use fake/demo credit cards provided at the checkout page', { tag: '@PurchaseBook' }, async ({ page }) => {
-    const popupHelper = new PopupHelper(page);
-    await popupHelper.blockAds(page);  
-    const pageManager = new PageManager(page); 
+    const pageManager = test.info().pageManager;
     const pageBooksSignIn = pageManager.getPageBooksSignIn();
     await pageBooksSignIn.goToBookingSignInPage(dataBookStore.url);
     await pageBooksSignIn.signInWithEmailAndPassword(dataBookStore.email, dataBookStore.password);  
