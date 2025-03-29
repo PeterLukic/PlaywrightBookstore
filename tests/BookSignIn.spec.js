@@ -1,16 +1,8 @@
-const { test} = require('@playwright/test');
-const { PageManager } = require('../pageobjects/PageManager');
-const dataBookStore = JSON.parse(JSON.stringify(require('../utils/dataBookStore.json')));
-const PopupHelper = require('../utils/PopupHelper'); 
+const { test } = require('../utils/hooks'); 
+const dataBookStore = require('../utils/dataBookStore.json');
 
-test.beforeEach(async ({ page }) => {
-    const popupHelper = new PopupHelper(page);
-    await popupHelper.blockAds(page);
-    test.info().pageManager = new PageManager(page); // Store it in test context
-});
-
-test('Users can log in with registered credentials', { tag: '@UserLoginRegister' }, async ({ page }) => {
-    const pageManager = test.info().pageManager;
+test('Users can log in with registered credentials', { tag: '@UserLoginRegister' }, async ({ testContext }) => {
+    const { pageManager } = testContext;
     const pageBooksSignUp = pageManager.getPageBooksSignUp();
     await pageBooksSignUp.goToBookingSignUpPage(dataBookStore.url);
     await pageBooksSignUp.signUpWithRandomData();
