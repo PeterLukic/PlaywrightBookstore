@@ -24,6 +24,7 @@ class PageBoookShoppingCart {
 
     // Verify all items in the cart
     async verifyCartItems() {
+
         const rowCount = await this.cartRows.count();
         for (let i = 0; i < rowCount; i++) {           
             const row = this.cartRows.nth(i);

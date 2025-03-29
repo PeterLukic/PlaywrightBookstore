@@ -108,6 +108,7 @@ class PageBooksProfile {
             console.error('Order ID not found in flash message');
             return null; // Return null if orderId is not found
         }
+        await this.page.waitForLoadState('networkidle');
     }
 
 }
